@@ -2,10 +2,15 @@
 
 Configures .env file to match the sail environtment variable's requirements.
 
+## Why is this created?
+
+To configure the .env file without having to run `php artisan sail:install` again just to replace the variables in .env file.
+It would be tedious specially when you have custom configuration in your `docker-compose.yml` because `sail:install` command overwrites your `docker-compose.yml` file.
+
+
 ## How?
 
-It reads the services inside docker-compose.yml file.
-It extends the sail's InstallCommand and uses its replaceEnvVariables method.
+It reads the services inside docker-compose.yml file. Then, it extends the sail's InstallCommand and uses its replaceEnvVariables method.
 
 ## Installation
 
