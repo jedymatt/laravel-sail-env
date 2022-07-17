@@ -1,4 +1,4 @@
-# laravel-env-sail
+# laravel-sail-env
 
 ![Packagist Downloads](https://img.shields.io/packagist/dm/jedymatt/laravel-env-sail?style=flat-square)
 ![Packagist Version](https://img.shields.io/packagist/v/jedymatt/laravel-env-sail?style=flat-square)
