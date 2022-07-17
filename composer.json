@@ -3,7 +3,7 @@
     "description": "Configures .env file to match the sail environment variable's requirements.",
     "keywords": [
         "laravel",
-        "laravel/sail",
+        "laravel-sail",
         "sail",
         "env"
     ],
@@ -38,9 +38,6 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.3|^8.0",
-        "illuminate/contracts": "^8.0|^9.0",
-        "illuminate/console": "^8.0|^9.0",
-        "illuminate/support": "^8.0|^9.0",
         "symfony/yaml": "^6.0",
         "laravel/sail": "^1.0"
     },
