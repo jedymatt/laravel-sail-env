@@ -12,7 +12,7 @@ Configures .env file to match the sail environment variable's requirements.
 Install as development dependency:
 
 ```bash
-composer require --dev jedymatt/laravel-env-sail
+composer require --dev jedymatt/laravel-sail-env
 ```
 
 ## Usage
