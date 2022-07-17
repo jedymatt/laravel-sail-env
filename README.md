@@ -1,8 +1,8 @@
 # laravel-sail-env
 
-![Packagist Downloads](https://img.shields.io/packagist/dm/jedymatt/laravel-env-sail?style=flat-square)
-![Packagist Version](https://img.shields.io/packagist/v/jedymatt/laravel-env-sail?style=flat-square)
-![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/jedymatt/laravel-env-sail?style=flat-square)
+![Packagist Downloads](https://img.shields.io/packagist/dm/jedymatt/laravel-sail-env?style=flat-square)
+![Packagist Version](https://img.shields.io/packagist/v/jedymatt/laravel-sail-env?style=flat-square)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/jedymatt/laravel-sail-env?style=flat-square)
 
 Configures .env file to match the sail environment variable's requirements.
 
