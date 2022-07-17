@@ -4,7 +4,7 @@
 ![Packagist Version](https://img.shields.io/packagist/v/jedymatt/laravel-env-sail?style=flat-square)
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/jedymatt/laravel-env-sail?style=flat-square)
 
-Configures .env file to match the sail environtment variable's requirements.
+Configures .env file to match the sail environment variable's requirements.
 
 
 ## Installation
