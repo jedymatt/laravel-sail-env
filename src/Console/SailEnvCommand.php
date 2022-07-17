@@ -3,7 +3,6 @@
 namespace Jedymatt\LaravelSailEnv\Console;
 
 use Laravel\Sail\Console\InstallCommand;
-use Symfony\Component\Yaml\Yaml;
 
 class SailEnvCommand extends InstallCommand
 {
@@ -68,12 +67,14 @@ class SailEnvCommand extends InstallCommand
 
     protected function servicesFromDockerCompose(): array
     {
-        $dockerCompose = Yaml::parseFile($this->laravel->basePath('docker-compose.yml'));
+        $environment = file_get_contents($this->laravel->basePath('docker-compose.yml'));
 
-        $sailServices = array_filter($dockerCompose['services'], function ($service) {
-            return in_array($service, $this->services);
-        }, ARRAY_FILTER_USE_KEY);
+        $regex = '/'.implode('|', array_map(function ($service) {
+            return '(?<=\s)'.$service.'(?=:)'; // Match service name followed by ':' (e.g. mysql:) and preceded by whitespace
+        }, $this->services)).'/';
 
-        return array_keys($sailServices);
+        preg_match_all($regex, $environment, $matches);
+
+        return array_values($matches[0]);
     }
 }
