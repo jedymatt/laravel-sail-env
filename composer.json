@@ -1,6 +1,6 @@
 {
     "name": "jedymatt/laravel-env-sail",
-    "description": "Configures .env file to match the sail environtment variable's requirements.",
+    "description": "Configures .env file to match the sail environment variable's requirements.",
     "type": "library",
     "license": "MIT",
     "autoload": {
