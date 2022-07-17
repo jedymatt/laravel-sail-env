@@ -1,6 +1,11 @@
 {
     "name": "jedymatt/laravel-sail-env",
     "description": "Configures .env file to match the sail environment variable's requirements.",
+    "keywords": ["laravel", "laravel/sail", "sail", "env"],
+    "support": {
+        "issues": "https://github.com/jedymatt/laravel-sail-env/issues",
+        "source": "https://github.com/jedymatt/laravel-sail-env"
+    },
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -20,6 +25,9 @@
                 "Jedymatt\\LaravelSailEnv\\LaravelSailEnvServiceProvider"
             ]
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
