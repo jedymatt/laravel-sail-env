@@ -5,11 +5,15 @@ Configures .env file to match the sail environtment variable's requirements.
 
 ## Installation
 
+Install as development dependency:
+
 ```bash
 composer require --dev jedymatt/laravel-env-sail
 ```
 
 ## Usage
+
+To configure .env file:
 
 ```bash
 php artisan env-sail
