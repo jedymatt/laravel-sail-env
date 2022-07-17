@@ -1,0 +1,33 @@
+{
+    "name": "jedymatt/laravel-env-sail",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jedymatt\\LaravelEnvSail\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jedy Matt Tabasco",
+            "email": "jedymatt@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jedymatt\\LaravelEnvSail\\LaravelEnvSailServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "illuminate/filesystem": "^8.0|^9.0",
+        "illuminate/support": "^8.0|^9.0",
+        "illuminate/validation": "^8.0|^9.0",
+        "symfony/yaml": "^6.0",
+        "laravel/sail": "^1.0"
+    }
+}
