@@ -32,7 +32,7 @@ It would be tedious specially when you have custom configuration in your `docker
 
 ## How?
 
-It reads the services inside docker-compose.yml file. Then, it extends the sail's InstallCommand and uses its replaceEnvVariables method.
+It reads the services inside docker-compose.yml file. Then, it extends the sail's `InstallCommand` class and uses its `replaceEnvVariables` method.
 
 
 ## Found Bugs?
