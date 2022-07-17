@@ -20,7 +20,7 @@ composer require --dev jedymatt/laravel-env-sail
 To configure .env file:
 
 ```bash
-php artisan env-sail
+php artisan sail:env
 ```
 
 

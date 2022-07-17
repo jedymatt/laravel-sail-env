@@ -1,10 +1,10 @@
 <?php
 
-namespace Jedymatt\LaravelEnvSail;
+namespace Jedymatt\LaravelSailEnv;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelEnvSailServiceProvider extends ServiceProvider
+class LaravelSailEnvServiceProvider extends ServiceProvider
 {
     /**
      * Register services.

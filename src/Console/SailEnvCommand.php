@@ -1,18 +1,18 @@
 <?php
 
-namespace Jedymatt\LaravelEnvSail\Console;
+namespace Jedymatt\LaravelSailEnv\Console;
 
 use Laravel\Sail\Console\InstallCommand;
 use Symfony\Component\Yaml\Yaml;
 
-class EnvSailCommand extends InstallCommand
+class SailEnvCommand extends InstallCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'env-sail';
+    protected $signature = 'sail:env';
 
     /**
      * The console command description.
@@ -57,7 +57,7 @@ class EnvSailCommand extends InstallCommand
             return 1;
         }
 
-        $services = $this->servicesFromDockerComposeFile();
+        $services = $this->servicesFromDockerCompose();
 
         $this->comment('Service(s) detected from docker-compose.yml: ['.implode(',', $services).']');
 
@@ -66,7 +66,7 @@ class EnvSailCommand extends InstallCommand
         $this->info('Successfully configured .env file.');
     }
 
-    protected function servicesFromDockerComposeFile(): array
+    protected function servicesFromDockerCompose(): array
     {
         $dockerCompose = Yaml::parseFile($this->laravel->basePath('docker-compose.yml'));
 
