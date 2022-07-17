@@ -25,7 +25,7 @@ class LaravelSailEnvServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Console\EnvSailCommand::class,
+                Console\SailEnvCommand::class,
             ]);
         }
     }
@@ -33,7 +33,7 @@ class LaravelSailEnvServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            Console\EnvSailCommand::class,
+            Console\SailEnvCommand::class,
         ];
     }
 }
