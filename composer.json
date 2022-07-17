@@ -1,5 +1,5 @@
 {
-    "name": "jedymatt/laravel-env-sail",
+    "name": "jedymatt/laravel-sail-env",
     "description": "Configures .env file to match the sail environment variable's requirements.",
     "type": "library",
     "license": "MIT",
