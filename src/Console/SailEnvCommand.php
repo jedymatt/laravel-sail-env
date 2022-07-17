@@ -59,7 +59,7 @@ class SailEnvCommand extends InstallCommand
 
         $services = $this->servicesFromDockerCompose();
 
-        $this->comment('Service(s) detected from docker-compose.yml: ['.implode(',', $services).']');
+        $this->comment('Detected services from docker-compose.yml: ['.implode(',', $services).']');
 
         $this->replaceEnvVariables($services);
 
