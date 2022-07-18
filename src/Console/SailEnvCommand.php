@@ -11,7 +11,8 @@ class SailEnvCommand extends InstallCommand
      *
      * @var string
      */
-    protected $signature = 'sail:env';
+    protected $signature = 'sail:env
+                            {--O|overwrite : Whether to overwrite the .env file if it exists}';
 
     /**
      * The console command description.
@@ -44,6 +45,11 @@ class SailEnvCommand extends InstallCommand
      */
     public function handle()
     {
+        if ($this->option('overwrite-env')) {
+            $this->comment('Overwriting environment variables');
+            copy($this->laravel->basePath('.env.example'), $this->laravel->basePath('.env'));
+        }
+
         // Create .env file if it doesn't exist
         if (! file_exists($this->laravel->basePath('.env'))) {
             $this->warn('No .env file found. Creating .env file from .env.example');
