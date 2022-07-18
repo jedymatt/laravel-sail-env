@@ -45,7 +45,7 @@ class SailEnvCommand extends InstallCommand
      */
     public function handle()
     {
-        if ($this->option('overwrite-env')) {
+        if ($this->option('overwrite')) {
             $this->comment('Overwriting environment variables');
             copy($this->laravel->basePath('.env.example'), $this->laravel->basePath('.env'));
         }
