@@ -42,4 +42,4 @@ Report to [GitHub Issues](https://github.com/jedymatt/laravel-env-sail/issues)
 
 ## Have suggestions?
 
-Report to [GitHub Issues](https://github.com/jedymatt/laravel-env-sail/issues)
+Feel free to create discussion in [GitHub Discussions](https://github.com/jedymatt/laravel-sail-env/discussions)
