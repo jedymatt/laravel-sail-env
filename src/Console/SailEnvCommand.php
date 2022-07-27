@@ -47,13 +47,13 @@ class SailEnvCommand extends InstallCommand
     {
         if ($this->option('overwrite')) {
             $this->comment('Overwriting environment variables');
-            copy($this->laravel->basePath('.env.example'), $this->laravel->basePath('.env'));
+            $this->createEnvFile();
         }
 
         // Create .env file if it doesn't exist
         if (! file_exists($this->laravel->basePath('.env'))) {
             $this->warn('No .env file found. Creating .env file from .env.example');
-            copy($this->laravel->basePath('.env.example'), $this->laravel->basePath('.env'));
+            $this->createEnvFile();
         }
 
         if (! file_exists($this->laravel->basePath('docker-compose.yml'))) {
@@ -82,5 +82,10 @@ class SailEnvCommand extends InstallCommand
         preg_match_all($regex, $environment, $matches);
 
         return array_values($matches[0]);
+    }
+
+    protected function createEnvFile(): void
+    {
+        copy($this->laravel->basePath('.env.example'), $this->laravel->basePath('.env'));
     }
 }
