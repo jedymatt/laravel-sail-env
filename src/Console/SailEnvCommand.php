@@ -12,7 +12,7 @@ class SailEnvCommand extends InstallCommand
      * @var string
      */
     protected $signature = 'sail:env
-                            {--O|overwrite : Whether to overwrite the .env file if it exists}';
+                            {--O|overwrite : Whether to overwrite the existing .env file}';
 
     /**
      * The console command description.
