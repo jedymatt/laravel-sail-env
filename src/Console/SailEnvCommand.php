@@ -73,13 +73,13 @@ class SailEnvCommand extends InstallCommand
 
     protected function servicesFromDockerCompose(): array
     {
-        $environment = file_get_contents($this->laravel->basePath('docker-compose.yml'));
+        $dockerComposeContent = file_get_contents($this->laravel->basePath('docker-compose.yml'));
 
         $regex = '/'.implode('|', array_map(function ($service) {
             return '(?<=\s)'.$service.'(?=:)'; // Match service name followed by ':' (e.g. mysql:) and preceded by whitespace
         }, $this->services)).'/';
 
-        preg_match_all($regex, $environment, $matches);
+        preg_match_all($regex, $dockerComposeContent, $matches);
 
         return array_values($matches[0]);
     }
