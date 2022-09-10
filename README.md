@@ -33,7 +33,7 @@ It would be tedious specially when you have custom configuration in your `docker
 ## How?
 
 It reads the services inside docker-compose.yml file.
-It extends the sail's `InstallCommand` class to use its `replaceEnvVariables` method.
+It extends the sail's `InstallCommand` class to use its `replaceEnvVariables` method so that it keeps in sync to `laravel/sail` package.
 
 
 ## Found Bugs?
