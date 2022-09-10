@@ -22,23 +22,6 @@ class SailEnvCommand extends InstallCommand
     protected $description = 'Configure the environment variables for the application';
 
     /**
-     * Sail services
-     *
-     * @var string[]
-     */
-    protected $services = [
-        'mysql',
-        'pgsql',
-        'mariadb',
-        'redis',
-        'memcached',
-        'meilisearch',
-        'minio',
-        'mailhog',
-        'selenium',
-    ];
-
-    /**
      * Execute the console command.
      *
      * @return int
