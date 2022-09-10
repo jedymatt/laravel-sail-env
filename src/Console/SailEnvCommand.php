@@ -45,7 +45,7 @@ class SailEnvCommand extends InstallCommand
             return 1;
         }
 
-        $services = $this->servicesFromDockerCompose();
+        $services = $this->getServicesFromDockerCompose();
 
         $this->comment('Detected services from docker-compose.yml: ['.implode(',', $services).']');
 
@@ -54,7 +54,7 @@ class SailEnvCommand extends InstallCommand
         $this->info('Successfully configured .env file.');
     }
 
-    protected function servicesFromDockerCompose(): array
+    protected function getServicesFromDockerCompose(): array
     {
         $dockerComposeContent = file_get_contents($this->laravel->basePath('docker-compose.yml'));
 
