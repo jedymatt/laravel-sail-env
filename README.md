@@ -27,13 +27,13 @@ php artisan sail:env
 ## Why is this created?
 
 To configure the .env file without having to run `php artisan sail:install` again just to replace the variables in .env file.
-It would be tedious specially when you have custom configuration in your `docker-compose.yml` because `sail:install` command overwrites your `docker-compose.yml` file.
+It would be tedious specially when you have custom configuration in your *docker-compose.yml* because `sail:install` command overwrites your *docker-compose.yml* file.
 
 
 ## How?
 
-It reads the services inside docker-compose.yml file.
-It extends the sail's `InstallCommand` class to use its `replaceEnvVariables` method so that it keeps in sync to `laravel/sail` package.
+It reads the services of sail inside docker-compose.yml file using regex.
+Then, It uses the sail's *InstallCommand's replaceEnvVariables* method so that it keeps in sync to *laravel/sail* package.
 
 
 ## Found Bugs?
