@@ -32,6 +32,12 @@ class SailEnvCommand extends Command
      */
     public function handle()
     {
+        if (! file_exists($this->laravel->basePath('docker-compose.yml'))) {
+            $this->error('docker-compose.yml not found. Please run "php artisan sail:install" first.');
+
+            return 1;
+        }
+
         if ($this->option('overwrite')) {
             $this->comment('Overwriting environment variables');
             $this->createEnvFile();
@@ -41,12 +47,6 @@ class SailEnvCommand extends Command
         if (! file_exists($this->laravel->basePath('.env'))) {
             $this->warn('No .env file found. Creating .env file from .env.example');
             $this->createEnvFile();
-        }
-
-        if (! file_exists($this->laravel->basePath('docker-compose.yml'))) {
-            $this->error('docker-compose.yml not found. Please run "php artisan sail:install" first.');
-
-            return 1;
         }
 
         $services = $this->getServicesFromCompose();
