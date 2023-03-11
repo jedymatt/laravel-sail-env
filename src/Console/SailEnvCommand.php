@@ -2,10 +2,14 @@
 
 namespace Jedymatt\LaravelSailEnv\Console;
 
-use Laravel\Sail\Console\InstallCommand;
+use Illuminate\Console\Command;
+use Laravel\Sail\Console\Concerns\InteractsWithDockerComposeServices;
+use Symfony\Component\Yaml\Yaml;
 
-class SailEnvCommand extends InstallCommand
+class SailEnvCommand extends Command
 {
+    use InteractsWithDockerComposeServices;
+
     /**
      * The name and signature of the console command.
      *
@@ -45,7 +49,7 @@ class SailEnvCommand extends InstallCommand
             return 1;
         }
 
-        $services = $this->getServicesFromDockerCompose();
+        $services = $this->getServicesFromCompose();
 
         $this->comment('Detected services from docker-compose.yml: ['.implode(',', $services).']');
 
@@ -54,17 +58,16 @@ class SailEnvCommand extends InstallCommand
         $this->info('Successfully configured .env file.');
     }
 
-    protected function getServicesFromDockerCompose(): array
+    protected function getServicesFromCompose(): array
     {
-        $dockerComposeContent = file_get_contents($this->laravel->basePath('docker-compose.yml'));
+        $compose = Yaml::parseFile($this->laravel->basePath('docker-compose.yml'));
 
-        $regex = '/'.implode('|', array_map(function ($service) {
-            return '(?<=[^\S]\s)'.$service.'(?=:)'; // Match service name followed by ':' (e.g. mysql:) and preceded only by whitespace
-        }, $this->services)).'/';
-
-        preg_match_all($regex, $dockerComposeContent, $matches);
-
-        return array_values($matches[0]);
+        return collect($compose['services'])
+            ->filter(function ($service, $key) {
+                return in_array($key, $this->services);
+            })
+            ->keys()
+            ->toArray();
     }
 
     protected function createEnvFile(): void

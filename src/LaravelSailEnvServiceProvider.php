@@ -2,20 +2,12 @@
 
 namespace Jedymatt\LaravelSailEnv;
 
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
+use Jedymatt\LaravelSailEnv\Console\SailEnvCommand;
 
-class LaravelSailEnvServiceProvider extends ServiceProvider
+class LaravelSailEnvServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
-
     /**
      * Bootstrap services.
      *
@@ -25,7 +17,7 @@ class LaravelSailEnvServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Console\SailEnvCommand::class,
+                SailEnvCommand::class,
             ]);
         }
     }
@@ -33,7 +25,7 @@ class LaravelSailEnvServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            Console\SailEnvCommand::class,
+            SailEnvCommand::class,
         ];
     }
 }
