@@ -32,9 +32,16 @@ It would be tedious specially when you have custom configuration in your *docker
 
 ## How?
 
-It reads the services of sail inside docker-compose.yml file using regex.
+__[v1.1.5 or newer]__ It reads the services of sail inside docker-compose.yml file using yaml parser.
+Then, It uses the sail's _InteractsWithDockerComposeServices_ trait to replace env variables so that it keeps in sync to _laravel/sail_ package.
+
+__[v1.1.4 or older]__ It reads the services of sail inside docker-compose.yml file using regex.
 Then, It uses the sail's *InstallCommand's replaceEnvVariables* method so that it keeps in sync to *laravel/sail* package.
 
+
+## Notes
+
+v1.1.5 or newer is only compatible to laravel/sail v1.20.0 and up.
 
 ## Found Bugs?
 
