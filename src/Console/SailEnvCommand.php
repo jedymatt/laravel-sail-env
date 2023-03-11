@@ -4,6 +4,7 @@ namespace Jedymatt\LaravelSailEnv\Console;
 
 use Illuminate\Console\Command;
 use Laravel\Sail\Console\Concerns\InteractsWithDockerComposeServices;
+use Symfony\Component\Yaml\Yaml;
 
 class SailEnvCommand extends Command
 {
@@ -59,15 +60,14 @@ class SailEnvCommand extends Command
 
     protected function getServicesFromCompose(): array
     {
-        $dockerComposeContent = file_get_contents($this->laravel->basePath('docker-compose.yml'));
+        $compose = Yaml::parseFile($this->laravel->basePath('docker-compose.yml'));
 
-        $regex = '/'.implode('|', array_map(function ($service) {
-            return '(?<=[^\S]\s)'.$service.'(?=:)'; // Match service name followed by ':' (e.g. mysql:) and preceded only by whitespace
-        }, $this->services)).'/';
-
-        preg_match_all($regex, $dockerComposeContent, $matches);
-
-        return array_values($matches[0]);
+        return collect($compose['services'])
+            ->filter(function ($service, $key) {
+                return in_array($key, $this->services);
+            })
+            ->keys()
+            ->toArray();
     }
 
     protected function createEnvFile(): void
