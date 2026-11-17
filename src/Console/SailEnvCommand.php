@@ -10,6 +10,13 @@ class SailEnvCommand extends Command
 {
     use InteractsWithDockerComposeServices;
 
+    private const COMPOSE_FILES = [
+        'compose.yaml',
+        'compose.yml',
+        'docker-compose.yaml',
+        'docker-compose.yml',
+    ];
+
     /**
      * The name and signature of the console command.
      *
@@ -32,8 +39,10 @@ class SailEnvCommand extends Command
      */
     public function handle()
     {
-        if (! file_exists($this->laravel->basePath('docker-compose.yml'))) {
-            $this->error('docker-compose.yml not found. Please run "php artisan sail:install" first.');
+        $composeFile = $this->findComposeFile();
+
+        if ($composeFile === null) {
+            $this->error('No compose file found (compose.yaml or docker-compose.yml). Please run "php artisan sail:install" first.');
 
             return 1;
         }
@@ -49,18 +58,33 @@ class SailEnvCommand extends Command
             $this->createEnvFile();
         }
 
-        $services = $this->getServicesFromCompose();
+        $services = $this->getServicesFromCompose($composeFile);
 
-        $this->comment('Detected services from docker-compose.yml: ['.implode(',', $services).']');
+        $this->comment('Detected services from '.basename($composeFile).': ['.implode(',', $services).']');
 
         $this->replaceEnvVariables($services);
 
         $this->info('Successfully configured .env file.');
     }
 
-    protected function getServicesFromCompose(): array
+    /**
+     * Sail writes compose.yaml since v1.46.0 and docker-compose.yml before it,
+     * so look for every file name the Compose spec allows, in its order.
+     */
+    protected function findComposeFile(): ?string
     {
-        $compose = Yaml::parseFile($this->laravel->basePath('docker-compose.yml'));
+        foreach (self::COMPOSE_FILES as $file) {
+            if (file_exists($path = $this->laravel->basePath($file))) {
+                return $path;
+            }
+        }
+
+        return null;
+    }
+
+    protected function getServicesFromCompose(string $composeFile): array
+    {
+        $compose = Yaml::parseFile($composeFile);
 
         return collect($compose['services'])
             ->filter(function ($service, $key) {
