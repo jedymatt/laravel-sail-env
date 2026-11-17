@@ -13,8 +13,8 @@ class SailEnvCommand extends Command
     private const COMPOSE_FILES = [
         'compose.yaml',
         'compose.yml',
-        'docker-compose.yaml',
         'docker-compose.yml',
+        'docker-compose.yaml',
     ];
 
     /**
@@ -68,8 +68,8 @@ class SailEnvCommand extends Command
     }
 
     /**
-     * Sail writes compose.yaml since v1.46.0 and docker-compose.yml before it,
-     * so look for every file name the Compose spec allows, in its order.
+     * Sail writes compose.yaml since v1.46.0 and docker-compose.yml before it.
+     * Pick the file the way `docker compose` does, so .env matches what Sail runs.
      */
     protected function findComposeFile(): ?string
     {
