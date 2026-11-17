@@ -43,6 +43,13 @@ Then, It uses the sail's *InstallCommand's replaceEnvVariables* method so that i
 
 v1.1.5 or newer is only compatible to laravel/sail v1.20.0 and up.
 
+## Testing
+
+```bash
+composer install
+composer test
+```
+
 ## Found Bugs?
 
 Report to [GitHub Issues](https://github.com/jedymatt/laravel-env-sail/issues)
