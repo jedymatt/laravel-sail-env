@@ -32,7 +32,7 @@ It would be tedious specially when you have custom configuration in your compose
 
 ## How?
 
-__[v1.1.5 or newer]__ It reads the sail services from your compose file using a YAML parser. It picks the same file `docker compose` does: `compose.yaml`, `compose.yml`, `docker-compose.yml`, then `docker-compose.yaml` (since v1.1.7; earlier versions read `docker-compose.yml` only, which Sail stopped writing in v1.46.0).
+__[v1.1.5 or newer]__ It reads the sail services from your compose file using a YAML parser. It reads the first of `compose.yaml`, `compose.yml`, `docker-compose.yml` and `docker-compose.yaml` that exists, the same order `docker compose` uses when `COMPOSE_FILE` isn't set. It doesn't read `COMPOSE_FILE` or override files such as `compose.override.yaml`. (Since v1.1.7; earlier versions read `docker-compose.yml` only, which Sail stopped writing in v1.46.0.)
 Then, It uses the sail's _InteractsWithDockerComposeServices_ trait to replace env variables so that it keeps in sync to _laravel/sail_ package.
 
 __[v1.1.4 or older]__ It reads the services of sail inside docker-compose.yml file using regex.

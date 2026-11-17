@@ -69,7 +69,7 @@ class SailEnvCommand extends Command
 
     /**
      * Sail writes compose.yaml since v1.46.0 and docker-compose.yml before it.
-     * Pick the file the way `docker compose` does, so .env matches what Sail runs.
+     * Check names in the order `docker compose` does when COMPOSE_FILE isn't set.
      */
     protected function findComposeFile(): ?string
     {
